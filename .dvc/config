@@ -1,0 +1,4 @@
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = ../Desktop/Snehankit/Work/action_recog/data/Remote
