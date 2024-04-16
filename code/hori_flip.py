@@ -42,6 +42,6 @@ if __name__ == "__main__":
             input_file = os.path.join(path_a, pat)
             output_name = add_tags(input_file,"hp","avi")
             output_file = os.path.join(out_p, output_name)
-            # flip_video(input_file, output_file)
+            flip_video(input_file, output_file)
             print(f"Video is flipped  : {output_name}")
     
