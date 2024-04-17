@@ -1,0 +1,26 @@
+schema: '2.0'
+stages:
+  hori_flip:
+    cmd: python code/hori_flip.py
+    deps:
+    - path: Data/Normal
+      hash: md5
+      md5: 4d70eb9a2f2942118258f42b138e5f13.dir
+      size: 36021790
+      nfiles: 20
+    - path: code/hori_flip.py
+      hash: md5
+      md5: 25f351cc40a95544123a0f7525968f9d
+      size: 1725
+  reverse:
+    cmd: python code/reverse.py
+    deps:
+    - path: Data/Normal
+      hash: md5
+      md5: c4cc5e56bf17f3dfe53e9a6e917d3615.dir
+      size: 62473874
+      nfiles: 35
+    - path: code/reverse.py
+      hash: md5
+      md5: 7cfedf100f7539398ebbdeb25b464066
+      size: 1882
