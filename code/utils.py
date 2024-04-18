@@ -8,3 +8,7 @@ def add_tags(file_name, tag, extension):
     file_name_parts = file_name.split(".")
     file_name_without_extension = ".".join(file_name_parts[:-1])
     return f"{file_name_without_extension}_{tag}.{extension}"
+
+
+if __name__ == "__main__":
+    print("Just Utility stuff :-)")
