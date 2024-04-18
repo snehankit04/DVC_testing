@@ -1,0 +1,17 @@
+stages:
+  hori_flip:
+    cmd: python code/hori_flip.py
+    deps:
+    - Data/Normal
+    - code/hori_flip.py
+  reverse:
+    cmd: python code/reverse.py
+    deps:
+    - Data/Normal
+    - code/reverse.py
+  data_labelling:
+    cmd: '- Sheet1.csv python code/data_labelling.py /home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/sample
+      - Sheet1.csv DVC_testing/Data/Normal DVC_testing/Data/Normal'
+    deps:
+    - Data/sample
+    - code/data_labelling.py

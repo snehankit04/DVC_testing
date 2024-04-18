@@ -1,25 +1,50 @@
-import pandas as pd
-import cv2
 import os
-import uuid
+import cv2
+import sys
+# import uuid
+import argparse
+# import pandas as pd
+
+
+# parser = argparse.ArgumentParser(description='Getting Required paths')
+
+# parser.add_argument('-csv_file_path', metavar='-C', type=dir_path, nargs='+',help='csv file path feeder')
+# parser.add_argument('videos_folder_path', metavar='V', type=str, nargs='+', help='videos folder path feeder')
+# parser.add_argument('output_folder_path', metavar='O', type=str, help='oputput folder path feeder')
+
+
+
+def is_valid_directory(path):
+    if not os.path.isdir(path):
+        raise argparse.ArgumentTypeError(f"{path} is not a valid directory")
+    return path
 
 def main():
     # Paths
-    csv_file = r'C:\Users\assad\Desktop\data_labelling\Infra_Motion_annotation-Dev_Copy3_2_2024.csv'
-    videos_folder = r'C:\Users\assad\Desktop\data_labelling\31-01-2024_malmo'
-    output_folder = r'C:\Users\assad\Desktop\data_labelling\output_data'
+    # csv_file = r'C:\Users\assad\Desktop\data_labelling\Infra_Motion_annotation-Dev_Copy3_2_2024.csv'
+    # videos_folder = r'C:\Users\assad\Desktop\data_labelling\31-01-2024_malmo'
+    # output_folder = r'C:\Users\assad\Desktop\data_labelling\output_data'
+
+
+    csv_file = sys.argv[1]
+    videos_folder = sys.argv[2]
+    output_folder = sys.argv[3]
+
+
+    print(f"csv_file: {csv_file}\nvideos_folder: {videos_folder} \noutput_folder: {output_folder}")
+    print(f"csv_file: {type(csv_file)}\nvideos_folder: {type(videos_folder)} \noutput_folder: {type(output_folder)}")
 
     # Load data
     df = load_data(csv_file)
+    print(df.head(5))
+    # # Clean data
+    # df = clean_data(df)
 
-    # Clean data
-    df = clean_data(df)
+    # # Create output folder if it doesn't exist
+    # os.makedirs(output_folder, exist_ok=True)
 
-    # Create output folder if it doesn't exist
-    os.makedirs(output_folder, exist_ok=True)
-
-    # Process videos
-    process_videos(df, videos_folder, output_folder)
+    # # Process videos
+    # process_videos(df, videos_folder, output_folder)
 
     print("Video clipping completed.")
 
