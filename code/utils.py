@@ -1,5 +1,4 @@
 
-
 def is_video_file(file_path):
     video_extensions = ['avi', 'mp4', 'mkv', 'mov', 'flv', 'wmv', 'webm']
     ext = file_path.split('.')[-1].lower()
@@ -12,7 +11,3 @@ def add_tags(file_name, tag, extension):
     return f"{file_name_without_extension}_{tag}.{extension}"
 
 
-if __name__ == "__main__":
-
-
-    print(f"Just Utility stuff :-):{"__"}")
