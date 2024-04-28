@@ -1,34 +1,23 @@
 import os
 import cv2
 import sys
-# import uuid
+import uuid
 import argparse
-# import pandas as pd
-
-
-# parser = argparse.ArgumentParser(description='Getting Required paths')
-
-# parser.add_argument('-csv_file_path', metavar='-C', type=dir_path, nargs='+',help='csv file path feeder')
-# parser.add_argument('videos_folder_path', metavar='V', type=str, nargs='+', help='videos folder path feeder')
-# parser.add_argument('output_folder_path', metavar='O', type=str, help='oputput folder path feeder')
+import pandas as pd
+from tqdm import tqdm
 
 
 
-def is_valid_directory(path):
-    if not os.path.isdir(path):
-        raise argparse.ArgumentTypeError(f"{path} is not a valid directory")
-    return path
-
-def main():
+def main(csv_path,in_folder,out_folder):
     # Paths
     # csv_file = r'C:\Users\assad\Desktop\data_labelling\Infra_Motion_annotation-Dev_Copy3_2_2024.csv'
     # videos_folder = r'C:\Users\assad\Desktop\data_labelling\31-01-2024_malmo'
     # output_folder = r'C:\Users\assad\Desktop\data_labelling\output_data'
 
 
-    csv_file = sys.argv[1]
-    videos_folder = sys.argv[2]
-    output_folder = sys.argv[3]
+    csv_file = csv_path
+    videos_folder = in_folder
+    output_folder = out_folder
 
 
     print(f"csv_file: {csv_file}\nvideos_folder: {videos_folder} \noutput_folder: {output_folder}")
@@ -36,15 +25,15 @@ def main():
 
     # Load data
     df = load_data(csv_file)
-    print(df.head(5))
-    # # Clean data
-    # df = clean_data(df)
+    # print(df.head(5))
+    # Clean data
+    df = clean_data(df)
 
-    # # Create output folder if it doesn't exist
-    # os.makedirs(output_folder, exist_ok=True)
+    # Create output folder if it doesn't exist
+    os.makedirs(output_folder, exist_ok=True)
 
-    # # Process videos
-    # process_videos(df, videos_folder, output_folder)
+    # Process videos
+    process_videos(df, videos_folder, output_folder)
 
     print("Video clipping completed.")
 
@@ -70,7 +59,7 @@ def remove_milliseconds(time_str):
 
 def process_videos(df, videos_folder, output_folder):
     # Iterate over rows in DataFrame
-    for index, row in df.iterrows():
+    for _, row in tqdm(df.iterrows()):
         video_name = row['Video_name']
         action = row['Action']
         start_time = row['Start_time']
@@ -81,13 +70,13 @@ def process_videos(df, videos_folder, output_folder):
         start_time_seconds = time_to_seconds(start_time)
         end_time_seconds = time_to_seconds(end_time)
 
-        clip_video(video_path, start_time_seconds, end_time_seconds, action, output_folder)
+        clip_video(video_path, video_name,start_time_seconds, end_time_seconds, action, output_folder)
 
 def time_to_seconds(time_str):
     minutes, seconds = map(int, time_str.split(':'))
     return minutes * 60 + seconds
 
-def clip_video(video_path, start_time_seconds, end_time_seconds, action, output_folder):
+def clip_video(video_path, video_name, start_time_seconds, end_time_seconds, action, output_folder):
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -113,4 +102,18 @@ def clip_video(video_path, start_time_seconds, end_time_seconds, action, output_
     out.release()
 
 if __name__ == "__main__":
-    main()
+    
+    
+    parser = argparse.ArgumentParser(description='Process data.')
+    parser.add_argument('--csv', type=str, help='Input csv path')
+    parser.add_argument('--input', type=str, help='Input folder path')
+    parser.add_argument('--output', type=str, help='Output folder path')
+    args = parser.parse_args()
+
+    if args.input is None or args.output is None or args.csv is None:
+        parser.error("--input and --output and --csv are required")
+
+    csv_path = args.csv
+    input_folder = args.input
+    output_folder = args.output
+    main(csv_path, input_folder, output_folder)

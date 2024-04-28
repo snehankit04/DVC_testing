@@ -10,8 +10,8 @@ stages:
     - Data/Normal
     - code/reverse.py
   data_labelling:
-    cmd: '- Sheet1.csv python code/data_labelling.py /home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/sample
-      - Sheet1.csv DVC_testing/Data/Normal DVC_testing/Data/Normal'
+    cmd: python code/data_labelling.py /home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/sample_Sheet1.csv
+     /home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/fps_drop /home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/Stage_1
     deps:
     - Data/sample
     - code/data_labelling.py
