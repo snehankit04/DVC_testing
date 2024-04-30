@@ -1,0 +1,38 @@
+schema: '2.0'
+stages:
+  data_label:
+    cmd: python code/data_labelling.py
+    deps:
+    - path: code/data_labelling.py
+      hash: md5
+      md5: d6b6950167f95111514567b41746e2b7
+      size: 4824
+    params:
+      params.yaml:
+        data_labelling.csv_path: Data/raw_data/sample_Sheet1.csv
+        data_labelling.input_folder: Data/raw_data
+        data_labelling.output_folder: Data/Stage_1
+    outs:
+    - path: Data/Stage_1
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+  person_crop:
+    cmd: python code/person_crop_video.py
+    deps:
+    - path: code/person_crop_video.py
+      hash: md5
+      md5: a24590bc3bc3eba2670a0163fa19fc21
+      size: 4895
+    params:
+      params.yaml:
+        person_cropping.input_folder: Data/Stage_1
+        person_cropping.model_path: models/yolov8m.pt
+        person_cropping.output_folder: Data/Stage_2
+    outs:
+    - path: Data/Stage_2
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0

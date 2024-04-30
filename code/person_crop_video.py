@@ -100,15 +100,19 @@ if __name__ == "__main__":
     # drop_path = drop_path = os.path.join(pickup_path,'result')
     # create_directory_if_not_exists(drop_path)
 
-    with open('param.yaml','r') as f:
+    with open('params.yaml','r') as f:
         data = yaml.safe_load(f)
 
-    print(f'param file contains : {data}')
+    print("Entered in Person Cropping")
+
+    # print(f'param file contains : {data}')
 
     model_in = data['person_cropping']['model_path']
     pickup_path = data['person_cropping']['input_folder']
     drop_path = data['person_cropping']['output_folder']
 
     create_directory_if_not_exists(drop_path)
+    # print(f"model_in:{model_in},\npickup_path:{pickup_path},\ndrop_path:{drop_path}")
 
-    # person_crop_videos(model_in, pickup_path, drop_path)
+    print("\nDone with  Person Cropping")
+    person_crop_videos(model_in, pickup_path, drop_path)

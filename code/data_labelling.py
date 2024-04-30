@@ -1,11 +1,12 @@
 import os
 import cv2
 import sys
+import yaml
 import uuid
 import argparse
 import pandas as pd
 from tqdm import tqdm
-
+from utils import create_directory_if_not_exists
 
 
 def main(csv_path,in_folder,out_folder):
@@ -104,16 +105,34 @@ def clip_video(video_path, video_name, start_time_seconds, end_time_seconds, act
 if __name__ == "__main__":
     
     
-    parser = argparse.ArgumentParser(description='Process data.')
-    parser.add_argument('--csv', type=str, help='Input csv path')
-    parser.add_argument('--input', type=str, help='Input folder path')
-    parser.add_argument('--output', type=str, help='Output folder path')
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(description='Process data.')
+    # parser.add_argument('--csv', type=str, help='Input csv path')
+    # parser.add_argument('--input', type=str, help='Input folder path')
+    # parser.add_argument('--output', type=str, help='Output folder path')
+    # args = parser.parse_args()
 
-    if args.input is None or args.output is None or args.csv is None:
-        parser.error("--input and --output and --csv are required")
+    # if args.input is None or args.output is None or args.csv is None:
+    #     parser.error("--input and --output and --csv are required")
 
-    csv_path = args.csv
-    input_folder = args.input
-    output_folder = args.output
+    # csv_path = args.csv
+    # input_folder = args.input
+    # output_folder = args.output
+
+    with open('params.yaml','r') as f:
+        data = yaml.safe_load(f)
+
+    print("Entered in Data labelling")
+    # print(f'param file contains : {data}')
+
+    csv_path = data['data_labelling']['csv_path']
+    input_folder = data['data_labelling']['input_folder']
+    output_folder = data['data_labelling']['output_folder']
+
+    create_directory_if_not_exists(output_folder)
+
+    # print(f"csv_path:{csv_path},\npickup_path:{input_folder},\ndrop_path:{output_folder}")
+
+    print("\nDone with Data labelling")
+
+
     main(csv_path, input_folder, output_folder)

@@ -1,0 +1,21 @@
+stages:
+  data_label:
+    cmd: python code/data_labelling.py
+    deps:
+    - code/data_labelling.py
+    params:
+    - data_labelling.csv_path
+    - data_labelling.input_folder
+    - data_labelling.output_folder
+    outs:
+    - Data/Stage_1
+  person_crop:
+    cmd: python code/person_crop_video.py
+    deps:
+    - code/person_crop_video.py
+    params:
+    - person_cropping.input_folder
+    - person_cropping.model_path
+    - person_cropping.output_folder
+    outs:
+    - Data/Stage_2
