@@ -1,12 +1,12 @@
 data_labelling :
   csv_path : Data/raw_data/sample_Sheet1.csv
-  input_folder : Data/raw_data
+  input_folder : Data/raw_sample
   output_folder : Data/Stage_1
 
 person_cropping : 
   model_path : models/yolov8m.pt
   input_folder : Data/Stage_1
-  output_folder : Data/Stage_2
+  output_folder : Data/Stage_1/result
 
 
 

@@ -18,4 +18,4 @@ stages:
     - person_cropping.model_path
     - person_cropping.output_folder
     outs:
-    - Data/Stage_2
+    - Data/Stage_1/result
