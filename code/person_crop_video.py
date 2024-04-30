@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
     # print(f'param file contains : {data}')
 
-    model_in = data['person_cropping']['model_path']
+    model_in = YOLO(data['person_cropping']['model_path'])
     pickup_path = data['person_cropping']['input_folder']
     drop_path = data['person_cropping']['output_folder']
 
