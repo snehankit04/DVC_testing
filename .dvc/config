@@ -1,5 +1,7 @@
 [core]
-    remote = local
+    remote = local_2
     autostage = true
 ['remote "local"']
     url = ../..Remote_test
+['remote "local_2"']
+    url = /home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Remote
