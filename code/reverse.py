@@ -1,6 +1,7 @@
 import os 
 import cv2
-from utils import is_video_file, add_tags
+import yaml
+from utils import is_video_file, add_tags, create_directory_if_not_exists
 
 
 def reverse_video(input_file, output_file):
@@ -43,14 +44,24 @@ def is_video_file(file_path):
 
 
 if __name__ == "__main__":
-    path_a = os.path.normpath("/home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/Normal")
-    out_p = os.path.normpath("/home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/flipped")
+    # path_a = os.path.normpath("/home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/Normal")
+    # out_p = os.path.normpath("/home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/flipped")
 
-    for pat in os.listdir(path_a):
+    with open('params.yaml','r') as f:
+        data = yaml.safe_load(f)
+
+
+    input_dir = data['revserd_clips']['input_folder']
+    output_dir = data['revserd_clips']['output_folder']
+
+    create_directory_if_not_exists(output_dir)
+    
+    for pat in os.listdir(input_dir):
         if is_video_file(pat) == True:
-            input_file = os.path.join(path_a, pat)
-            output_name = add_tags(input_file,"rev","avi")
-            output_file = os.path.join(out_p, output_name)
-            reverse_video(input_file, output_file)
-            print(f"Video is reversed : {output_name}")
+            input_file_name =  pat
+            input_file_path = os.path.join(input_dir,input_file_name)
+            output_name = add_tags(input_file_name,"rev","avi")
+            output_file = os.path.join(output_dir, output_name)
+            # reverse_video(input_file, output_file)
+            print(f"Video is reversed : {output_file}")
   

@@ -19,3 +19,4 @@ stages:
     - person_cropping.output_folder
     outs:
     - Data/Stage_2
+
