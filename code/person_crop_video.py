@@ -1,10 +1,12 @@
-from collections import defaultdict
-import cv2
-import numpy as np
-from ultralytics import YOLO
 import os
+import cv2
+import yaml
+import numpy as np
+
+# import argparse
 from tqdm import tqdm
-import argparse
+from ultralytics import YOLO
+from collections import defaultdict
 from utils import create_directory_if_not_exists
 
 
@@ -85,17 +87,28 @@ def person_crop_videos(model, pickup_path, drop_path):
 
 if __name__ == "__main__":
     
-    parser = argparse.ArgumentParser(description='Process data.')
-    parser.add_argument('--input', type=str, help='Input file path')
-    parser.add_argument('--model', type=str, help='Model file path')
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(description='Process data.')
+    # parser.add_argument('--input', type=str, help='Input file path')
+    # parser.add_argument('--model', type=str, help='Model file path')
+    # args = parser.parse_args()
 
-    if args.input is None or args.model is None:
-        parser.error("--input and --model are required")
+    # if args.input is None or args.model is None:
+    #     parser.error("--input and --model are required")
 
-    model_in = YOLO(args.model)
-    pickup_path = args.input
-    drop_path = drop_path = os.path.join(pickup_path,'result')
+    # model_in = YOLO(args.model)
+    # pickup_path = args.input
+    # drop_path = drop_path = os.path.join(pickup_path,'result')
     # create_directory_if_not_exists(drop_path)
 
-    person_crop_videos(model_in, pickup_path, drop_path)
+    with open('param.yaml','r') as f:
+        data = yaml.safe_load(f)
+
+    print(f'param file contains : {data}')
+
+    model_in = data['person_cropping']['model_path']
+    pickup_path = data['person_cropping']['input_folder']
+    drop_path = data['person_cropping']['output_folder']
+
+    create_directory_if_not_exists(drop_path)
+
+    # person_crop_videos(model_in, pickup_path, drop_path)

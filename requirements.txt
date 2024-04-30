@@ -1,0 +1,5 @@
+pyyaml 
+dvclive
+pandas 
+numpy
+opencv-python
