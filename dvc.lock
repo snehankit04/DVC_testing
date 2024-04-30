@@ -36,3 +36,20 @@ stages:
       md5: e0eb835c48646d7bb7947fa2ab068939.dir
       size: 90902256
       nfiles: 101
+  vid_revered:
+    cmd: python code/reverse.py
+    deps:
+    - path: code/reverse.py
+      hash: md5
+      md5: d17ae863d61ea11383046331b669e113
+      size: 2235
+    params:
+      params.yaml:
+        revserd_clips.input_folder: Data/Stage_2/Shoplift_crop_person
+        revserd_clips.output_folder: Data/Stage_3/reversed
+    outs:
+    - path: Data/Stage_3/reversed
+      hash: md5
+      md5: e081cf45ee2d0486d75f5c87125637c7.dir
+      size: 15587068
+      nfiles: 12

@@ -55,13 +55,13 @@ if __name__ == "__main__":
     output_dir = data['revserd_clips']['output_folder']
 
     create_directory_if_not_exists(output_dir)
-    
+
     for pat in os.listdir(input_dir):
         if is_video_file(pat) == True:
             input_file_name =  pat
             input_file_path = os.path.join(input_dir,input_file_name)
             output_name = add_tags(input_file_name,"rev","avi")
             output_file = os.path.join(output_dir, output_name)
-            # reverse_video(input_file, output_file)
+            reverse_video(input_file_path, output_file)
             print(f"Video is reversed : {output_file}")
   

@@ -20,3 +20,12 @@ stages:
     outs:
     - Data/Stage_2
 
+  vid_revered:
+    cmd: python code/reverse.py
+    deps:
+    - code/reverse.py
+    params:
+    - revserd_clips.input_folder
+    - revserd_clips.output_folder
+    outs:
+    - Data/Stage_3/reversed
