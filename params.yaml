@@ -6,7 +6,7 @@ data_labelling :
 person_cropping : 
   model_path : models/yolov8m.pt
   input_folder : Data/Stage_1
-  output_folder : Data/Stage_1/result
+  output_folder : Data/Stage_2
 
 
 
