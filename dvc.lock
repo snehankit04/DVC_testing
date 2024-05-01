@@ -5,17 +5,17 @@ stages:
     deps:
     - path: code/data_labelling.py
       hash: md5
-      md5: 92ba5b2b56720fd13c0b202898cf95c2
-      size: 4838
+      md5: eb5fd081b35ee6fb14a961f3dbc4a991
+      size: 4558
     params:
       params.yaml:
-        data_labelling.csv_path: Data/raw_data/sample_Sheet1.csv
+        data_labelling.csv_path: Data/raw_sample/sample_Sheet1.csv
         data_labelling.input_folder: Data/raw_sample
         data_labelling.output_folder: Data/Stage_1
     outs:
     - path: Data/Stage_1
       hash: md5
-      md5: be0e60875b7d3c1749d676ae998692d8.dir
+      md5: 32e1e8ab2197952d2dab0ea0c0c1d2c0.dir
       size: 811233688
       nfiles: 46
   person_crop:
@@ -23,8 +23,8 @@ stages:
     deps:
     - path: code/person_crop_video.py
       hash: md5
-      md5: 17220098ed92c47edd0c6cc4305554c5
-      size: 4899
+      md5: 84c9b8b78e7e6f77e2b4e14114b52713
+      size: 4703
     params:
       params.yaml:
         person_cropping.input_folder: Data/Stage_1
@@ -33,8 +33,8 @@ stages:
     outs:
     - path: Data/Stage_2
       hash: md5
-      md5: e0eb835c48646d7bb7947fa2ab068939.dir
-      size: 90902256
+      md5: 1a8e2f49243102997e5e52369f90c580.dir
+      size: 90817028
       nfiles: 101
   vid_revered:
     cmd: python code/reverse.py
@@ -50,6 +50,6 @@ stages:
     outs:
     - path: Data/Stage_3/reversed
       hash: md5
-      md5: e081cf45ee2d0486d75f5c87125637c7.dir
-      size: 15587068
-      nfiles: 12
+      md5: a343e6f4e96d4a03a039cde0533512c9.dir
+      size: 49534040
+      nfiles: 40

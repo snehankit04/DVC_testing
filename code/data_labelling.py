@@ -10,19 +10,13 @@ from utils import create_directory_if_not_exists
 
 
 def main(csv_path,in_folder,out_folder):
-    # Paths
-    # csv_file = r'C:\Users\assad\Desktop\data_labelling\Infra_Motion_annotation-Dev_Copy3_2_2024.csv'
-    # videos_folder = r'C:\Users\assad\Desktop\data_labelling\31-01-2024_malmo'
-    # output_folder = r'C:\Users\assad\Desktop\data_labelling\output_data'
-
 
     csv_file = csv_path
     videos_folder = in_folder
     output_folder = out_folder
 
-
-    print(f"csv_file: {csv_file}\nvideos_folder: {videos_folder} \noutput_folder: {output_folder}")
-    print(f"csv_file: {type(csv_file)}\nvideos_folder: {type(videos_folder)} \noutput_folder: {type(output_folder)}")
+    # print(f"csv_file: {csv_file}\nvideos_folder: {videos_folder} \noutput_folder: {output_folder}")
+    # print(f"csv_file: {type(csv_file)}\nvideos_folder: {type(videos_folder)} \noutput_folder: {type(output_folder)}")
 
     # Load data
     df = load_data(csv_file)
@@ -132,7 +126,5 @@ if __name__ == "__main__":
 
     # print(f"csv_path:{csv_path},\npickup_path:{input_folder},\ndrop_path:{output_folder}")
 
-    print("\nDone with Data labelling")
-
-
     main(csv_path, input_folder, output_folder)
+    print("\nDone with Data labelling")

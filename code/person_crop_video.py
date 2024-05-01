@@ -13,10 +13,6 @@ from utils import create_directory_if_not_exists
 # mods 
 # 1 make a fuction to increase and reduce Bounding box size 
 
-# model = YOLO('models/yolov8m.pt')
-# pickup_path = "/home/apple/Desktop/Snehankit/Work/action_recog/code/Data_pipeline/DVC_testing/Data/Stage_1"
-# drop_path = os.path.join(pickup_path,'result')
-
 def person_crop_videos(model, pickup_path, drop_path):
 
     sub_dir = os.listdir(pickup_path)

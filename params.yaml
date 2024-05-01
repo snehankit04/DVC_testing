@@ -1,5 +1,5 @@
 data_labelling :
-  csv_path : Data/raw_data/sample_Sheet1.csv
+  csv_path : Data/raw_sample/sample_Sheet1.csv
   input_folder : Data/raw_sample
   output_folder : Data/Stage_1
 
@@ -16,4 +16,5 @@ revserd_clips:
 # dvc stage add -n data_label -p data_labelling.csv_path,data_labelling.input_folder,data_labelling.output_folder -d code/data_labelling.py -o Data/Stage_1 python code/data_labelling.py
 
 # dvc stage add -n person_crop -p person_cropping.model_path, person_cropping.input_folder, person_cropping.output_folder -d code/person_crop_video.py -o Data/Stage_2 python code/person_crop_video.py
+
 # dvc stage add -n vid_revered -p revserd_clips.input_folder,revserd_clips.output_folder -d code/reverse.py -o Data/Stage_2/reversed python code/reverse.py
